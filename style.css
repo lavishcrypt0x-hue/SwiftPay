@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,9 +12,8 @@
   --text: #111827;
   --muted: #6b7280;
   --primary: #2457ff;
-  --primary-dark: #173bb5;
   --border: #e5e7eb;
-  --green: #0a9f5b;
+  --green: #079454;
   --red: #e5484d;
 }
 
@@ -27,6 +27,10 @@ button {
   background: none;
   cursor: pointer;
   color: inherit;
+}
+
+input {
+  outline: none;
 }
 
 .app {
@@ -62,13 +66,14 @@ button {
   width: 42px;
   height: 42px;
   border-radius: 12px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  overflow: hidden;
   background: #2457ff;
-  font-size: 23px;
+}
+
+.brand-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand h1 {
@@ -148,10 +153,8 @@ button {
 .balance-card {
   background: linear-gradient(135deg, #111d38, #172c5a);
   color: white;
-
   border-radius: 20px;
   padding: 20px;
-
   box-shadow: 0 10px 30px #101c3b25;
 }
 
@@ -178,7 +181,6 @@ button {
 .bank-info {
   display: flex;
   justify-content: space-between;
-
   font-size: 11px;
   color: #c4cede;
 }
@@ -190,7 +192,6 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 9px;
-
   margin: 20px 0;
 }
 
@@ -241,7 +242,7 @@ button {
 }
 
 
-/* SECTION */
+/* SECTIONS */
 
 .section {
   margin-top: 22px;
@@ -356,6 +357,11 @@ button {
 
 .credit {
   color: var(--green);
+}
+
+.red {
+  background: #ffe7e7;
+  color: #d82f36;
 }
 
 
@@ -638,7 +644,7 @@ button {
   pointer-events: none;
 
   transition: .25s;
-  z-index: 50;
+  z-index: 100;
 }
 
 .toast.show {
@@ -647,7 +653,216 @@ button {
 }
 
 
-/* MOBILE */
+/* MODALS */
+
+.modal {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(7, 12, 25, .65);
+
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+
+  z-index: 80;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-box {
+  width: 100%;
+  max-width: 480px;
+
+  background: white;
+
+  border-radius: 25px 25px 0 0;
+
+  padding: 25px 20px 30px;
+
+  position: relative;
+
+  animation: modalUp .25s ease;
+}
+
+.modal-box.center {
+  text-align: center;
+}
+
+@keyframes modalUp {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  right: 18px;
+  top: 15px;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+  background: #f1f3f7;
+
+  font-size: 20px;
+}
+
+.modal-box h2 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.modal-subtitle {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 20px;
+}
+
+.modal-box label {
+  display: block;
+
+  font-size: 11px;
+  font-weight: bold;
+
+  margin: 15px 0 7px;
+}
+
+.modal-box input {
+  width: 100%;
+
+  border: 1px solid var(--border);
+
+  border-radius: 12px;
+
+  padding: 13px;
+
+  font-size: 14px;
+}
+
+.amount-input {
+  display: flex;
+  align-items: center;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  padding-left: 13px;
+}
+
+.amount-input span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.amount-input input {
+  border: none;
+}
+
+.primary-btn {
+  width: 100%;
+
+  background: var(--primary);
+  color: white;
+
+  padding: 14px;
+
+  border-radius: 13px;
+
+  font-weight: bold;
+  font-size: 13px;
+
+  margin-top: 20px;
+}
+
+
+/* QR */
+
+.qr-placeholder {
+  width: 190px;
+  height: 190px;
+
+  margin: 20px auto;
+
+  background:
+    linear-gradient(90deg, #111 10px, transparent 10px) 0 0 / 30px 30px,
+    linear-gradient(#111 10px, transparent 10px) 0 0 / 30px 30px,
+    white;
+
+  border: 15px solid white;
+  box-shadow: 0 0 0 1px var(--border);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qr-placeholder div {
+  background: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+
+/* SCANNER */
+
+.scanner-box {
+  width: 230px;
+  height: 230px;
+
+  margin: 20px auto;
+
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 60px;
+  color: #dce4ff;
+
+  overflow: hidden;
+}
+
+.scanner-line {
+  position: absolute;
+
+  width: 85%;
+  height: 2px;
+
+  background: var(--primary);
+
+  animation: scan 2s infinite ease-in-out;
+}
+
+@keyframes scan {
+
+  0% {
+    top: 20%;
+  }
+
+  50% {
+    top: 80%;
+  }
+
+  100% {
+    top: 20%;
+  }
+
+}
+
+
+/* DESKTOP */
 
 @media (min-width: 481px) {
 
@@ -665,4 +880,5 @@ button {
     bottom: 20px;
     border-radius: 0 0 20px 20px;
   }
+
 }
