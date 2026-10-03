@@ -1,1 +1,12 @@
-
+{
+  "name": "SwiftPay",
+  "short_name": "SwiftPay",
+  "description": "SwiftPay UPI Payment Prototype",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#0b1220",
+  "orientation": "portrait",
+  "icons": []
+}
