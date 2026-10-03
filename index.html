@@ -1,58 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
 
-  <meta name="theme-color" content="#0b1220" />
-  <meta name="description" content="SwiftPay — UPI Payment Prototype" />
+  <meta name="theme-color" content="#0b1220">
+  <meta
+    name="description"
+    content="SwiftPay - Fast, Simple and Secure UPI Payment Prototype"
+  >
+
+  <link rel="manifest" href="./manifest.json">
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="https://lavishcrypt0x-hue.github.io/SwiftPay/icon-192.png"
+  >
+
+  <link
+    rel="apple-touch-icon"
+    href="https://lavishcrypt0x-hue.github.io/SwiftPay/icon-192.png"
+  >
+
+  <link rel="stylesheet" href="./style.css">
 
   <title>SwiftPay</title>
-
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- APP -->
   <div class="app">
 
     <!-- HEADER -->
     <header class="topbar">
+
       <div class="brand">
-        <div class="brand-icon">⚡</div>
+        <div class="brand-icon">
+          <img
+            src="https://lavishcrypt0x-hue.github.io/SwiftPay/icon-192.png"
+            alt="SwiftPay"
+          >
+        </div>
+
         <div>
           <h1>SwiftPay</h1>
           <span>Fast. Simple. Secure.</span>
         </div>
       </div>
 
-      <button class="profile-btn" onclick="openProfile()">
+      <button
+        class="profile-btn"
+        onclick="openProfile()"
+        aria-label="Profile"
+      >
         <span>LS</span>
       </button>
+
     </header>
 
 
     <!-- HOME -->
     <main id="homeScreen" class="screen active">
 
-      <!-- DEMO NOTICE -->
       <div class="demo-banner">
         <strong>DEMO MODE</strong>
         <span>Prototype transactions only</span>
       </div>
 
 
-      <!-- BALANCE CARD -->
+      <!-- BALANCE -->
       <section class="balance-card">
 
         <div class="balance-top">
           <span>Available Balance</span>
 
-          <button onclick="toggleBalance()" class="eye-btn">
+          <button
+            class="eye-btn"
+            onclick="toggleBalance()"
+            aria-label="Show or hide balance"
+          >
             👁
           </button>
         </div>
@@ -69,25 +101,25 @@
       </section>
 
 
-      <!-- MAIN ACTIONS -->
+      <!-- QUICK ACTIONS -->
       <section class="quick-actions">
 
-        <button onclick="showToast('Opening scanner...')" class="action">
+        <button class="action" onclick="openScanner()">
           <div class="action-icon blue">▣</div>
           <span>Scan & Pay</span>
         </button>
 
-        <button onclick="sendMoney()" class="action">
+        <button class="action" onclick="openSendMoney()">
           <div class="action-icon green">↗</div>
           <span>Send</span>
         </button>
 
-        <button onclick="showToast('Receive Money screen')" class="action">
+        <button class="action" onclick="openReceive()">
           <div class="action-icon purple">↓</div>
           <span>Receive</span>
         </button>
 
-        <button onclick="showToast('Request Money screen')" class="action">
+        <button class="action" onclick="openRequest()">
           <div class="action-icon orange">₹</div>
           <span>Request</span>
         </button>
@@ -100,7 +132,9 @@
 
         <div class="section-title">
           <h2>Quick Services</h2>
-          <button onclick="showToast('All services')">View all</button>
+          <button onclick="showToast('All services coming soon')">
+            View all
+          </button>
         </div>
 
         <div class="service-grid">
@@ -145,14 +179,19 @@
 
         <div class="section-title">
           <h2>Recent Transactions</h2>
-          <button onclick="showScreen('historyScreen')">See all</button>
-        </div>
 
+          <button onclick="showScreen('historyScreen')">
+            See all
+          </button>
+        </div>
 
         <div class="transactions">
 
           <div class="transaction">
-            <div class="transaction-icon red">R</div>
+
+            <div class="transaction-icon red">
+              R
+            </div>
 
             <div class="transaction-info">
               <strong>Rahul Sharma</strong>
@@ -162,11 +201,15 @@
             <div class="amount debit">
               -₹500
             </div>
+
           </div>
 
 
           <div class="transaction">
-            <div class="transaction-icon green">A</div>
+
+            <div class="transaction-icon green">
+              A
+            </div>
 
             <div class="transaction-info">
               <strong>Aman Verma</strong>
@@ -176,11 +219,15 @@
             <div class="amount credit">
               +₹1,500
             </div>
+
           </div>
 
 
           <div class="transaction">
-            <div class="transaction-icon purple">E</div>
+
+            <div class="transaction-icon purple">
+              E
+            </div>
 
             <div class="transaction-info">
               <strong>Electricity Bill</strong>
@@ -190,6 +237,7 @@
             <div class="amount debit">
               -₹1,240
             </div>
+
           </div>
 
         </div>
@@ -207,27 +255,54 @@
         <p>Manage your UPI payments</p>
       </div>
 
-      <div class="large-action-card" onclick="sendMoney()">
+      <div
+        class="large-action-card"
+        onclick="openSendMoney()"
+      >
         <div class="large-icon">↗</div>
+
         <div>
           <strong>Send Money</strong>
           <span>Pay using UPI</span>
         </div>
       </div>
 
-      <div class="large-action-card" onclick="showToast('QR Scanner opened')">
+
+      <div
+        class="large-action-card"
+        onclick="openScanner()"
+      >
         <div class="large-icon">▣</div>
+
         <div>
           <strong>Scan & Pay</strong>
-          <span>Scan any supported QR</span>
+          <span>Scan a supported QR</span>
         </div>
       </div>
 
-      <div class="large-action-card" onclick="showToast('Receive Money')">
+
+      <div
+        class="large-action-card"
+        onclick="openReceive()"
+      >
         <div class="large-icon">↓</div>
+
         <div>
           <strong>Receive Money</strong>
           <span>Show your QR or UPI ID</span>
+        </div>
+      </div>
+
+
+      <div
+        class="large-action-card"
+        onclick="openRequest()"
+      >
+        <div class="large-icon">₹</div>
+
+        <div>
+          <strong>Request Money</strong>
+          <span>Request money from someone</span>
         </div>
       </div>
 
@@ -243,47 +318,76 @@
       </div>
 
       <div class="filter-row">
-        <button class="filter active">All</button>
-        <button class="filter">Received</button>
-        <button class="filter">Paid</button>
+
+        <button class="filter active">
+          All
+        </button>
+
+        <button class="filter">
+          Received
+        </button>
+
+        <button class="filter">
+          Paid
+        </button>
+
       </div>
 
       <div class="transactions">
 
         <div class="transaction">
           <div class="transaction-icon red">R</div>
+
           <div class="transaction-info">
             <strong>Rahul Sharma</strong>
             <span>02 Oct 2026 • UPI</span>
           </div>
-          <div class="amount debit">-₹500</div>
+
+          <div class="amount debit">
+            -₹500
+          </div>
         </div>
+
 
         <div class="transaction">
           <div class="transaction-icon green">A</div>
+
           <div class="transaction-info">
             <strong>Aman Verma</strong>
             <span>01 Oct 2026 • UPI</span>
           </div>
-          <div class="amount credit">+₹1,500</div>
+
+          <div class="amount credit">
+            +₹1,500
+          </div>
         </div>
+
 
         <div class="transaction">
           <div class="transaction-icon blue">M</div>
+
           <div class="transaction-info">
             <strong>Mobile Recharge</strong>
             <span>30 Sep 2026</span>
           </div>
-          <div class="amount debit">-₹299</div>
+
+          <div class="amount debit">
+            -₹299
+          </div>
         </div>
+
 
         <div class="transaction">
           <div class="transaction-icon purple">E</div>
+
           <div class="transaction-info">
             <strong>Electricity Bill</strong>
             <span>28 Sep 2026</span>
           </div>
-          <div class="amount debit">-₹1,240</div>
+
+          <div class="amount debit">
+            -₹1,240
+          </div>
         </div>
 
       </div>
@@ -299,13 +403,20 @@
         <p>Your SwiftPay rewards</p>
       </div>
 
+
       <div class="reward-card">
 
-        <span class="reward-label">Reward Points</span>
+        <span class="reward-label">
+          Reward Points
+        </span>
 
-        <strong>2,450</strong>
+        <strong>
+          2,450
+        </strong>
 
-        <p>Keep using SwiftPay to collect demo reward points.</p>
+        <p>
+          Keep using SwiftPay to collect demo reward points.
+        </p>
 
         <button onclick="showToast('Rewards store opened')">
           View Rewards
@@ -313,12 +424,19 @@
 
       </div>
 
+
       <div class="offer">
+
         <span>🎁</span>
+
         <div>
           <strong>Special Offer</strong>
-          <p>Earn bonus points on demo payments.</p>
+
+          <p>
+            Earn bonus points on demo payments.
+          </p>
         </div>
+
       </div>
 
     </main>
@@ -329,10 +447,15 @@
 
       <div class="profile-header">
 
-        <div class="profile-avatar">LS</div>
+        <div class="profile-avatar">
+          LS
+        </div>
 
         <h2>Lavish</h2>
-        <p>lavish@swiftpay</p>
+
+        <p>
+          lavish@swiftpay
+        </p>
 
       </div>
 
@@ -377,6 +500,7 @@
 
       </div>
 
+
       <div class="prototype-info">
         SwiftPay Prototype v1.0
       </div>
@@ -387,32 +511,42 @@
     <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
 
-      <button class="nav-item active"
-              onclick="showScreen('homeScreen', this)">
+      <button
+        class="nav-item active"
+        onclick="showScreen('homeScreen', this)"
+      >
         <span>⌂</span>
         <small>Home</small>
       </button>
 
-      <button class="nav-item"
-              onclick="showScreen('paymentsScreen', this)">
+      <button
+        class="nav-item"
+        onclick="showScreen('paymentsScreen', this)"
+      >
         <span>₹</span>
         <small>Payments</small>
       </button>
 
-      <button class="nav-item"
-              onclick="showScreen('historyScreen', this)">
+      <button
+        class="nav-item"
+        onclick="showScreen('historyScreen', this)"
+      >
         <span>↔</span>
         <small>History</small>
       </button>
 
-      <button class="nav-item"
-              onclick="showScreen('rewardsScreen', this)">
+      <button
+        class="nav-item"
+        onclick="showScreen('rewardsScreen', this)"
+      >
         <span>★</span>
         <small>Rewards</small>
       </button>
 
-      <button class="nav-item"
-              onclick="showScreen('profileScreen', this)">
+      <button
+        class="nav-item"
+        onclick="showScreen('profileScreen', this)"
+      >
         <span>●</span>
         <small>Profile</small>
       </button>
@@ -426,7 +560,196 @@
   <div id="toast" class="toast"></div>
 
 
-  <script src="app.js"></script>
+  <!-- SEND MONEY MODAL -->
+  <div id="sendModal" class="modal">
+
+    <div class="modal-box">
+
+      <button
+        class="modal-close"
+        onclick="closeModal('sendModal')"
+      >
+        ×
+      </button>
+
+      <h2>Send Money</h2>
+      <p class="modal-subtitle">
+        Demo payment only
+      </p>
+
+      <label>
+        Recipient
+      </label>
+
+      <input
+        id="recipientInput"
+        type="text"
+        placeholder="Name or UPI ID"
+        autocomplete="off"
+      >
+
+      <label>
+        Amount
+      </label>
+
+      <div class="amount-input">
+        <span>₹</span>
+
+        <input
+          id="amountInput"
+          type="number"
+          min="1"
+          placeholder="0"
+        >
+      </div>
+
+      <label>
+        Note
+      </label>
+
+      <input
+        id="noteInput"
+        type="text"
+        placeholder="Optional"
+      >
+
+      <button
+        class="primary-btn"
+        onclick="processPayment()"
+      >
+        Continue
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- RECEIVE MODAL -->
+  <div id="receiveModal" class="modal">
+
+    <div class="modal-box center">
+
+      <button
+        class="modal-close"
+        onclick="closeModal('receiveModal')"
+      >
+        ×
+      </button>
+
+      <h2>Receive Money</h2>
+
+      <p class="modal-subtitle">
+        Your demo UPI ID
+      </p>
+
+      <div class="qr-placeholder">
+        <div>QR</div>
+      </div>
+
+      <strong>
+        lavish@swiftpay
+      </strong>
+
+      <button
+        class="primary-btn"
+        onclick="showToast('UPI ID copied')"
+      >
+        Copy UPI ID
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- REQUEST MODAL -->
+  <div id="requestModal" class="modal">
+
+    <div class="modal-box">
+
+      <button
+        class="modal-close"
+        onclick="closeModal('requestModal')"
+      >
+        ×
+      </button>
+
+      <h2>Request Money</h2>
+
+      <p class="modal-subtitle">
+        Create a demo payment request
+      </p>
+
+      <label>
+        Person / UPI ID
+      </label>
+
+      <input
+        id="requestPerson"
+        type="text"
+        placeholder="Name or UPI ID"
+      >
+
+      <label>
+        Amount
+      </label>
+
+      <input
+        id="requestAmount"
+        type="number"
+        min="1"
+        placeholder="₹0"
+      >
+
+      <button
+        class="primary-btn"
+        onclick="processRequest()"
+      >
+        Send Request
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- SCANNER MODAL -->
+  <div id="scannerModal" class="modal">
+
+    <div class="modal-box center">
+
+      <button
+        class="modal-close"
+        onclick="closeModal('scannerModal')"
+      >
+        ×
+      </button>
+
+      <h2>Scan & Pay</h2>
+
+      <p class="modal-subtitle">
+        Camera scanner is simulated in this prototype.
+      </p>
+
+      <div class="scanner-box">
+        <div class="scanner-line"></div>
+        <span>▣</span>
+      </div>
+
+      <button
+        class="primary-btn"
+        onclick="simulateScan()"
+      >
+        Simulate QR Scan
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script src="./app.js"></script>
 
 </body>
 </html>
