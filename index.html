@@ -1,1 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
 
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="description" content="SwiftPay — UPI Payment Prototype" />
+
+  <title>SwiftPay</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- APP -->
+  <div class="app">
+
+    <!-- HEADER -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <div>
+          <h1>SwiftPay</h1>
+          <span>Fast. Simple. Secure.</span>
+        </div>
+      </div>
+
+      <button class="profile-btn" onclick="openProfile()">
+        <span>LS</span>
+      </button>
+    </header>
+
+
+    <!-- HOME -->
+    <main id="homeScreen" class="screen active">
+
+      <!-- DEMO NOTICE -->
+      <div class="demo-banner">
+        <strong>DEMO MODE</strong>
+        <span>Prototype transactions only</span>
+      </div>
+
+
+      <!-- BALANCE CARD -->
+      <section class="balance-card">
+
+        <div class="balance-top">
+          <span>Available Balance</span>
+
+          <button onclick="toggleBalance()" class="eye-btn">
+            👁
+          </button>
+        </div>
+
+        <div id="balance" class="balance">
+          ₹25,480.00
+        </div>
+
+        <div class="bank-info">
+          <span>SwiftPay Demo Bank</span>
+          <span>•••• 4582</span>
+        </div>
+
+      </section>
+
+
+      <!-- MAIN ACTIONS -->
+      <section class="quick-actions">
+
+        <button onclick="showToast('Opening scanner...')" class="action">
+          <div class="action-icon blue">▣</div>
+          <span>Scan & Pay</span>
+        </button>
+
+        <button onclick="sendMoney()" class="action">
+          <div class="action-icon green">↗</div>
+          <span>Send</span>
+        </button>
+
+        <button onclick="showToast('Receive Money screen')" class="action">
+          <div class="action-icon purple">↓</div>
+          <span>Receive</span>
+        </button>
+
+        <button onclick="showToast('Request Money screen')" class="action">
+          <div class="action-icon orange">₹</div>
+          <span>Request</span>
+        </button>
+
+      </section>
+
+
+      <!-- SERVICES -->
+      <section class="section">
+
+        <div class="section-title">
+          <h2>Quick Services</h2>
+          <button onclick="showToast('All services')">View all</button>
+        </div>
+
+        <div class="service-grid">
+
+          <button onclick="showToast('Mobile Recharge')">
+            <span>📱</span>
+            <small>Recharge</small>
+          </button>
+
+          <button onclick="showToast('Electricity Bill')">
+            <span>💡</span>
+            <small>Electricity</small>
+          </button>
+
+          <button onclick="showToast('DTH Recharge')">
+            <span>📺</span>
+            <small>DTH</small>
+          </button>
+
+          <button onclick="showToast('FASTag')">
+            <span>🚗</span>
+            <small>FASTag</small>
+          </button>
+
+          <button onclick="showToast('Split Bill')">
+            <span>👥</span>
+            <small>Split Bill</small>
+          </button>
+
+          <button onclick="showToast('AutoPay')">
+            <span>🔄</span>
+            <small>AutoPay</small>
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- RECENT TRANSACTIONS -->
+      <section class="section">
+
+        <div class="section-title">
+          <h2>Recent Transactions</h2>
+          <button onclick="showScreen('historyScreen')">See all</button>
+        </div>
+
+
+        <div class="transactions">
+
+          <div class="transaction">
+            <div class="transaction-icon red">R</div>
+
+            <div class="transaction-info">
+              <strong>Rahul Sharma</strong>
+              <span>Today • 10:42 AM</span>
+            </div>
+
+            <div class="amount debit">
+              -₹500
+            </div>
+          </div>
+
+
+          <div class="transaction">
+            <div class="transaction-icon green">A</div>
+
+            <div class="transaction-info">
+              <strong>Aman Verma</strong>
+              <span>Yesterday • 6:20 PM</span>
+            </div>
+
+            <div class="amount credit">
+              +₹1,500
+            </div>
+          </div>
+
+
+          <div class="transaction">
+            <div class="transaction-icon purple">E</div>
+
+            <div class="transaction-info">
+              <strong>Electricity Bill</strong>
+              <span>28 Sep • 8:12 PM</span>
+            </div>
+
+            <div class="amount debit">
+              -₹1,240
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- PAYMENTS -->
+    <main id="paymentsScreen" class="screen">
+
+      <div class="page-header">
+        <h2>Payments</h2>
+        <p>Manage your UPI payments</p>
+      </div>
+
+      <div class="large-action-card" onclick="sendMoney()">
+        <div class="large-icon">↗</div>
+        <div>
+          <strong>Send Money</strong>
+          <span>Pay using UPI</span>
+        </div>
+      </div>
+
+      <div class="large-action-card" onclick="showToast('QR Scanner opened')">
+        <div class="large-icon">▣</div>
+        <div>
+          <strong>Scan & Pay</strong>
+          <span>Scan any supported QR</span>
+        </div>
+      </div>
+
+      <div class="large-action-card" onclick="showToast('Receive Money')">
+        <div class="large-icon">↓</div>
+        <div>
+          <strong>Receive Money</strong>
+          <span>Show your QR or UPI ID</span>
+        </div>
+      </div>
+
+    </main>
+
+
+    <!-- HISTORY -->
+    <main id="historyScreen" class="screen">
+
+      <div class="page-header">
+        <h2>Transaction History</h2>
+        <p>Your recent activity</p>
+      </div>
+
+      <div class="filter-row">
+        <button class="filter active">All</button>
+        <button class="filter">Received</button>
+        <button class="filter">Paid</button>
+      </div>
+
+      <div class="transactions">
+
+        <div class="transaction">
+          <div class="transaction-icon red">R</div>
+          <div class="transaction-info">
+            <strong>Rahul Sharma</strong>
+            <span>02 Oct 2026 • UPI</span>
+          </div>
+          <div class="amount debit">-₹500</div>
+        </div>
+
+        <div class="transaction">
+          <div class="transaction-icon green">A</div>
+          <div class="transaction-info">
+            <strong>Aman Verma</strong>
+            <span>01 Oct 2026 • UPI</span>
+          </div>
+          <div class="amount credit">+₹1,500</div>
+        </div>
+
+        <div class="transaction">
+          <div class="transaction-icon blue">M</div>
+          <div class="transaction-info">
+            <strong>Mobile Recharge</strong>
+            <span>30 Sep 2026</span>
+          </div>
+          <div class="amount debit">-₹299</div>
+        </div>
+
+        <div class="transaction">
+          <div class="transaction-icon purple">E</div>
+          <div class="transaction-info">
+            <strong>Electricity Bill</strong>
+            <span>28 Sep 2026</span>
+          </div>
+          <div class="amount debit">-₹1,240</div>
+        </div>
+
+      </div>
+
+    </main>
+
+
+    <!-- REWARDS -->
+    <main id="rewardsScreen" class="screen">
+
+      <div class="page-header">
+        <h2>Rewards</h2>
+        <p>Your SwiftPay rewards</p>
+      </div>
+
+      <div class="reward-card">
+
+        <span class="reward-label">Reward Points</span>
+
+        <strong>2,450</strong>
+
+        <p>Keep using SwiftPay to collect demo reward points.</p>
+
+        <button onclick="showToast('Rewards store opened')">
+          View Rewards
+        </button>
+
+      </div>
+
+      <div class="offer">
+        <span>🎁</span>
+        <div>
+          <strong>Special Offer</strong>
+          <p>Earn bonus points on demo payments.</p>
+        </div>
+      </div>
+
+    </main>
+
+
+    <!-- PROFILE -->
+    <main id="profileScreen" class="screen">
+
+      <div class="profile-header">
+
+        <div class="profile-avatar">LS</div>
+
+        <h2>Lavish</h2>
+        <p>lavish@swiftpay</p>
+
+      </div>
+
+
+      <div class="settings-list">
+
+        <button onclick="showToast('Bank Accounts')">
+          <span>🏦</span>
+          Bank Accounts
+          <b>›</b>
+        </button>
+
+        <button onclick="showToast('UPI IDs')">
+          <span>🔗</span>
+          UPI IDs
+          <b>›</b>
+        </button>
+
+        <button onclick="showToast('Security Center')">
+          <span>🔐</span>
+          Security Center
+          <b>›</b>
+        </button>
+
+        <button onclick="showToast('Notifications')">
+          <span>🔔</span>
+          Notifications
+          <b>›</b>
+        </button>
+
+        <button onclick="showToast('Help & Support')">
+          <span>❓</span>
+          Help & Support
+          <b>›</b>
+        </button>
+
+        <button onclick="showToast('Settings')">
+          <span>⚙️</span>
+          Settings
+          <b>›</b>
+        </button>
+
+      </div>
+
+      <div class="prototype-info">
+        SwiftPay Prototype v1.0
+      </div>
+
+    </main>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-nav">
+
+      <button class="nav-item active"
+              onclick="showScreen('homeScreen', this)">
+        <span>⌂</span>
+        <small>Home</small>
+      </button>
+
+      <button class="nav-item"
+              onclick="showScreen('paymentsScreen', this)">
+        <span>₹</span>
+        <small>Payments</small>
+      </button>
+
+      <button class="nav-item"
+              onclick="showScreen('historyScreen', this)">
+        <span>↔</span>
+        <small>History</small>
+      </button>
+
+      <button class="nav-item"
+              onclick="showScreen('rewardsScreen', this)">
+        <span>★</span>
+        <small>Rewards</small>
+      </button>
+
+      <button class="nav-item"
+              onclick="showScreen('profileScreen', this)">
+        <span>●</span>
+        <small>Profile</small>
+      </button>
+
+    </nav>
+
+  </div>
+
+
+  <!-- TOAST -->
+  <div id="toast" class="toast"></div>
+
+
+  <script src="app.js"></script>
+
+</body>
+</html>
